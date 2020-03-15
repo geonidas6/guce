@@ -1,0 +1,83 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Vgmcertificat index{% endblock %}
+
+{% block body %}
+    <h1>Vgmcertificat index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>RequestTime</th>
+                <th>ValidationTime</th>
+                <th>TicketNumber</th>
+                <th>NetWeight</th>
+                <th>TareWeight</th>
+                <th>Booking</th>
+                <th>Waybill</th>
+                <th>Consignee</th>
+                <th>ContainerNumber</th>
+                <th>CargoType</th>
+                <th>ContainerSize</th>
+                <th>SealNumber</th>
+                <th>NatureOfGoods</th>
+                <th>CompanyId</th>
+                <th>AgreementNumber</th>
+                <th>CertifyingOfficer</th>
+                <th>ValidatingOfficer</th>
+                <th>Weighbridge</th>
+                <th>Transporter</th>
+                <th>Driver</th>
+                <th>TruckNumber</th>
+                <th>TvfNumber</th>
+                <th>TvfDate</th>
+                <th>WeightingDate1</th>
+                <th>WeightingDate2</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for vgmcertificat in vgmcertificats %}
+            <tr>
+                <td>{{ vgmcertificat.id }}</td>
+                <td>{{ vgmcertificat.requestTime ? vgmcertificat.requestTime|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ vgmcertificat.validationTime ? vgmcertificat.validationTime|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ vgmcertificat.ticketNumber }}</td>
+                <td>{{ vgmcertificat.netWeight }}</td>
+                <td>{{ vgmcertificat.tareWeight }}</td>
+                <td>{{ vgmcertificat.booking }}</td>
+                <td>{{ vgmcertificat.waybill }}</td>
+                <td>{{ vgmcertificat.consignee }}</td>
+                <td>{{ vgmcertificat.containerNumber }}</td>
+                <td>{{ vgmcertificat.cargoType }}</td>
+                <td>{{ vgmcertificat.containerSize }}</td>
+                <td>{{ vgmcertificat.sealNumber }}</td>
+                <td>{{ vgmcertificat.natureOfGoods }}</td>
+                <td>{{ vgmcertificat.companyId }}</td>
+                <td>{{ vgmcertificat.agreementNumber }}</td>
+                <td>{{ vgmcertificat.certifyingOfficer }}</td>
+                <td>{{ vgmcertificat.validatingOfficer }}</td>
+                <td>{{ vgmcertificat.weighbridge }}</td>
+                <td>{{ vgmcertificat.transporter }}</td>
+                <td>{{ vgmcertificat.driver }}</td>
+                <td>{{ vgmcertificat.truckNumber }}</td>
+                <td>{{ vgmcertificat.tvfNumber }}</td>
+                <td>{{ vgmcertificat.tvfDate ? vgmcertificat.tvfDate|date('Y-m-d') : '' }}</td>
+                <td>{{ vgmcertificat.weightingDate1 ? vgmcertificat.weightingDate1|date('Y-m-d') : '' }}</td>
+                <td>{{ vgmcertificat.weightingDate2 ? vgmcertificat.weightingDate2|date('Y-m-d') : '' }}</td>
+                <td>
+                    <a href="{{ path('vgmcertificat_show', {'id': vgmcertificat.id}) }}">show</a>
+                    <a href="{{ path('vgmcertificat_edit', {'id': vgmcertificat.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="27">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('vgmcertificat_new') }}">Create new</a>
+{% endblock %}

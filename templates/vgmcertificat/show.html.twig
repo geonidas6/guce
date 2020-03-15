@@ -1,0 +1,122 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Vgmcertificat{% endblock %}
+
+{% block body %}
+    <h1>Vgmcertificat</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ vgmcertificat.id }}</td>
+            </tr>
+            <tr>
+                <th>RequestTime</th>
+                <td>{{ vgmcertificat.requestTime ? vgmcertificat.requestTime|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>ValidationTime</th>
+                <td>{{ vgmcertificat.validationTime ? vgmcertificat.validationTime|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>TicketNumber</th>
+                <td>{{ vgmcertificat.ticketNumber }}</td>
+            </tr>
+            <tr>
+                <th>NetWeight</th>
+                <td>{{ vgmcertificat.netWeight }}</td>
+            </tr>
+            <tr>
+                <th>TareWeight</th>
+                <td>{{ vgmcertificat.tareWeight }}</td>
+            </tr>
+            <tr>
+                <th>Booking</th>
+                <td>{{ vgmcertificat.booking }}</td>
+            </tr>
+            <tr>
+                <th>Waybill</th>
+                <td>{{ vgmcertificat.waybill }}</td>
+            </tr>
+            <tr>
+                <th>Consignee</th>
+                <td>{{ vgmcertificat.consignee }}</td>
+            </tr>
+            <tr>
+                <th>ContainerNumber</th>
+                <td>{{ vgmcertificat.containerNumber }}</td>
+            </tr>
+            <tr>
+                <th>CargoType</th>
+                <td>{{ vgmcertificat.cargoType }}</td>
+            </tr>
+            <tr>
+                <th>ContainerSize</th>
+                <td>{{ vgmcertificat.containerSize }}</td>
+            </tr>
+            <tr>
+                <th>SealNumber</th>
+                <td>{{ vgmcertificat.sealNumber }}</td>
+            </tr>
+            <tr>
+                <th>NatureOfGoods</th>
+                <td>{{ vgmcertificat.natureOfGoods }}</td>
+            </tr>
+            <tr>
+                <th>CompanyId</th>
+                <td>{{ vgmcertificat.companyId }}</td>
+            </tr>
+            <tr>
+                <th>AgreementNumber</th>
+                <td>{{ vgmcertificat.agreementNumber }}</td>
+            </tr>
+            <tr>
+                <th>CertifyingOfficer</th>
+                <td>{{ vgmcertificat.certifyingOfficer }}</td>
+            </tr>
+            <tr>
+                <th>ValidatingOfficer</th>
+                <td>{{ vgmcertificat.validatingOfficer }}</td>
+            </tr>
+            <tr>
+                <th>Weighbridge</th>
+                <td>{{ vgmcertificat.weighbridge }}</td>
+            </tr>
+            <tr>
+                <th>Transporter</th>
+                <td>{{ vgmcertificat.transporter }}</td>
+            </tr>
+            <tr>
+                <th>Driver</th>
+                <td>{{ vgmcertificat.driver }}</td>
+            </tr>
+            <tr>
+                <th>TruckNumber</th>
+                <td>{{ vgmcertificat.truckNumber }}</td>
+            </tr>
+            <tr>
+                <th>TvfNumber</th>
+                <td>{{ vgmcertificat.tvfNumber }}</td>
+            </tr>
+            <tr>
+                <th>TvfDate</th>
+                <td>{{ vgmcertificat.tvfDate ? vgmcertificat.tvfDate|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>WeightingDate1</th>
+                <td>{{ vgmcertificat.weightingDate1 ? vgmcertificat.weightingDate1|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>WeightingDate2</th>
+                <td>{{ vgmcertificat.weightingDate2 ? vgmcertificat.weightingDate2|date('Y-m-d') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('vgmcertificat_index') }}">back to list</a>
+
+    <a href="{{ path('vgmcertificat_edit', {'id': vgmcertificat.id}) }}">edit</a>
+
+    {{ include('vgmcertificat/_delete_form.html.twig') }}
+{% endblock %}

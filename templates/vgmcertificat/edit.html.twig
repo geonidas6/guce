@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Vgmcertificat{% endblock %}
+
+{% block body %}
+    <h1>Edit Vgmcertificat</h1>
+
+    {{ include('vgmcertificat/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('vgmcertificat_index') }}">back to list</a>
+
+    {{ include('vgmcertificat/_delete_form.html.twig') }}
+{% endblock %}
