@@ -30,21 +30,18 @@ class VgmcertificatController extends AbstractController
      */
     public function new(Request $request): Response
     {
+
+        $request = new Request();
+
+        $content = $request->getContent();
+        return $this->json([$content] );
+
+
         $vgmcertificat = new Vgmcertificat();
         $form = $this->createForm(VgmcertificatType::class, $vgmcertificat);
         $form->handleRequest($request);
 
-        $request = new Request(
-            $_GET,
-            $_POST,
-            [],
-            $_COOKIE,
-            $_FILES,
-            $_SERVER
-        );
 
-        $content = $request->getContent();
-        return $this->json([$content] );
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
