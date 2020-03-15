@@ -104,7 +104,7 @@ class UserController extends AbstractController
     {
 
         $client = HttpClient::create();
-        $response = $client->request('GET', 'http://http://vgm.collabus.online/public/api/transporters?page=1');
+        $response = $client->request('GET', 'http://vgm.collabus.online/public/api/transporters?page=1');
 
         $statusCode = $response->getStatusCode();
 // $statusCode = 200
