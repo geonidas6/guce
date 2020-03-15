@@ -1,0 +1,250 @@
+{#{% form_theme form 'user/register_custom_theme.html.twig' %}#}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <!-- Meta, title, CSS, favicons, etc. -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title> Collabus | Inscription </title>
+
+  {#<!-- Bootstrap -->
+  <link href="{{ asset('vendors/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link href="{{  asset('css/font-awesome.min.css') }}" rel="stylesheet">
+  <!-- NProgress -->
+  <link href="{{  asset('css/nprogress.css') }}" rel="stylesheet">
+  <!-- Animate.css -->
+  <link href="{{  asset('css/animate.min.css') }}" rel="stylesheet">
+
+  <!-- Custom Theme Style -->
+  <link href="{{  asset('css/custom.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('vendors/intl-tel-input/build/css/intlTelInput.css') }}" rel="stylesheet">
+  <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+#}
+
+  <style>
+    .intl-tel-input {
+      position: relative;
+      display: inline-block;
+      width: 100%;
+    }
+
+  </style>
+</head>
+
+<body class="login">
+<div>
+  <a class="hiddenanchor" id="signin"></a>
+
+  <div class="login_wrapper">
+    <div  class="animate form login_form">
+      <section class="login_content">
+        <form id="register_form" action="{{ path('register') }}" method="post">
+          <h2>Inscrivez vous</h2>
+          <div class="row">
+            <div class="col col-lg-12 col-xs-12 col-md-12 col-xs-12 col-md-12 col-xs-12 col-md-12">
+                {{ form_row(form.lastName,{'attr':{'class':'form-control','placeholder':'Nom de famille'}}) }}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col col-lg-12 col-xs-12 col-md-12 col-xs-12 col-md-12">
+                {{ form_row(form.firstName) }}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col col-lg-12 col-xs-12 col-md-12 col-xs-12 col-md-12">
+                <span id="error-msg"></span>
+                <span id="valid-msg"></span>
+                {{ form_row(form.tel) }}
+            </div>
+          </div>
+            <br/>
+
+          <div class="row">
+            <div class="col col-lg-12 col-xs-12 col-md-12 col-xs-12 col-md-12">
+                {{ form_row(form.sexe) }}
+            </div>
+          </div>
+
+          <br/>
+          <div class="row">
+            <div class="col col-lg-12 col-xs-12 col-md-12 col-xs-12 col-md-12">
+                {{ form_row(form.email) }}
+            </div>
+
+          </div>
+
+          <div class="row">
+            <div class="col col-lg-12 col-xs-12 col-md-12 col-xs-12 col-md-12">
+                {{ form_row(form.username) }}
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col col-lg-12 col-xs-12 col-md-12 col-xs-12 col-md-12">
+                {{ form_row(form.plainPassword) }}
+
+              <div class="item form-group">
+
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    {{ form_row(form.dialcode,{'attr':{'class':'form-control hide  col-md-12 col-xs-12 '}}) }}
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12 hidden">
+                    {{ form_row(form.adresse,{'attr':{'class':'form-control hide  col-md-12 col-xs-12 '}}) }}
+                </div>
+              </div>
+              <div style="margin-left:25%">
+                <input type="submit"  class="btn btn-primary " value="Soumettre" id="Soumettre">
+              </div>
+            </div>
+          </div>
+            {{ form_end(form) }}
+            {#   <input type="text" class="form-control" placeholder="Identifiant" required />
+             </div>
+             <div>
+               <input type="email" class="form-control" placeholder="Email" required />
+             </div>
+             <div>
+               <input type="password" class="form-control" placeholder="Mot de passe" required />
+             </div>
+             <div>
+               <input type="password" class="form-control" placeholder="Confirmer le mot de passe" required="" />
+             </div>
+              #}
+
+
+          <div class="clearfix"></div>
+          <div class="separator">
+            <p class="change_link">Déjà membre ?
+              <a href="{{ path('app_login') }}" class="to_register" id="title_login"> S'identifier </a>
+            </p>
+
+            <div class="clearfix"></div>
+            <br />
+
+            {#<div>
+              <h1><img src="{{ asset('images/antarus.jpg') }}" width="40" height="40"/> Collabus!</h1>
+              <p>©2018 All Rights Reserved. Inetschools</p>
+            </div>#}
+          </div>
+        </form>
+
+      </section>
+    </div>
+  </div>
+</div>
+{#
+<script src="{{ asset('vendors/jquery/dist/jquery.min.js') }}"></script>
+<script src="{{ asset('vendors/intl-tel-input/build/js/intlTelInput.js') }}"></script>
+#}
+
+<script>
+
+
+    var input = document.querySelector("#user_tel");
+
+    var iti =   intlTelInput(input, {
+        // allowDropdown: false,
+        // autoHideDialCode: false,
+        // autoPlaceholder: "off",
+        // dropdownContainer: document.body,
+        // excludeCountries: ["us"],
+        // formatOnDisplay: false,
+        geoIpLookup: function(callback) {
+            $.get("http://ipinfo.io", function() {}, "jsonp").always(function(resp) {
+                var countryCode = (resp && resp.country) ? resp.country : "";
+                callback(countryCode);
+            });
+        },
+        // hiddenInput: "full_number",
+        // initialCountry: "auto",
+        // localizedCountries: { 'de': 'Deutschland' },
+        // nationalMode: false,
+        // onlyCountries: ['us', 'gb', 'ch', 'ca', 'do'],
+        placeholderNumberType: "MOBILE",
+        preferredCountries: ['bj','bf','ci','gw','ml','ne','sn','tg'],
+         separateDialCode: true,
+        utilsScript: "{{ asset('vendors/intl-tel-input/build/js/utils.js') }}",
+    });
+
+
+
+    window.iti;
+
+    var countryData = iti.getSelectedCountryData();
+
+
+    errorMsg = document.querySelector("#error-msg"),
+        validMsg = document.querySelector("#valid-msg");
+
+    // here, the index maps to the error code returned from getValidationError - see readme
+    var errorMap = [ "Numéro invalide", "Code de pays invalide", "Trop court", "Trop long", "Numéro invalide"];
+    var reset = function() {
+        input.classList.remove("error");
+        errorMsg.innerHTML = "";
+        errorMsg.classList.add("hide");
+        validMsg.classList.add("hide");
+
+    };
+
+
+    // on blur: validate
+    input.addEventListener('blur', function() {
+        reset();
+        if (input.value.trim()) {
+            if (iti.isValidNumber()) {
+                validMsg.classList.remove("hide");
+                validMsg.innerHTML = "Numéro valide";
+                //control_espace_message.innerHTML = " ";
+                $("#Soumettre").removeAttr('disabled');
+            } else {
+                input.classList.add("error");
+                var errorCode = iti.getValidationError();
+                errorMsg.innerHTML = errorMap[errorCode];
+                errorMsg.classList.remove("hide");
+               // control_espace_message.innerHTML = " ";
+                $("#Soumettre").attr('disabled','disabled');
+            }
+        }
+
+    });
+
+
+    {% if defaultdialcode != "" %}
+    iti.setNumber("");
+    {% endif %}
+
+    // on keyup / change flag: reset
+    input.addEventListener('change', reset);
+    input.addEventListener('keyup', reset);
+    $(function(){
+        $("#Soumettre").on('click',function(e){
+
+            var countryData = iti.getSelectedCountryData();
+            $('#user_dialcode').val(countryData['dialCode'])
+            e.preventDefault();
+            $("#register_form").submit();
+        })
+    });
+
+
+    $("#user_username").change(function() {
+        var input = $(this).val();
+        var regex = new RegExp("[A-Za-z0-9](([_\.\-]?[a-zA-Z0-9]+)*)@([A-Za-z0-9]+)(([_\.\-]?[a-zA-Z0-9]+)*)\.([A-Za-z]{2,})") ;
+        if (regex.test(input)) {
+            $("#Soumettre").attr('disabled','disabled');
+        } else {
+           // $(this).val(input.substr(0, input.length-1));
+            $("#Soumettre").removeAttr('disabled');
+        }
+    });
+
+
+</script>
+
+</body>
+</html>

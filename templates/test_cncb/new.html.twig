@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New TestCncb{% endblock %}
+
+{% block body %}
+    <h1>Create new TestCncb</h1>
+
+    {{ include('test_cncb/_form.html.twig') }}
+
+    <a href="{{ path('test_cncb_index') }}">back to list</a>
+{% endblock %}

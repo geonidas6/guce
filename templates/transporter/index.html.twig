@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Transporter index{% endblock %}
+
+{% block body %}
+    <h1>Transporter index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Date</th>
+                <th>Transporter</th>
+                <th>Agent</th>
+                <th>Date_val</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for transporter in transporters %}
+            <tr>
+                <td>{{ transporter.id }}</td>
+                <td>{{ transporter.date ? transporter.date|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ transporter.transporter }}</td>
+                <td>{{ transporter.agent }}</td>
+                <td>{{ transporter.dateVal }}</td>
+                <td>
+                    <a href="{{ path('transporter_show', {'id': transporter.id}) }}">show</a>
+                    <a href="{{ path('transporter_edit', {'id': transporter.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('transporter_new') }}">Create new</a>
+{% endblock %}

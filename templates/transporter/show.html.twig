@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Transporter{% endblock %}
+
+{% block body %}
+    <h1>Transporter</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ transporter.id }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ transporter.date ? transporter.date|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Transporter</th>
+                <td>{{ transporter.transporter }}</td>
+            </tr>
+            <tr>
+                <th>Agent</th>
+                <td>{{ transporter.agent }}</td>
+            </tr>
+            <tr>
+                <th>Date_val</th>
+                <td>{{ transporter.dateVal }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('transporter_index') }}">back to list</a>
+
+    <a href="{{ path('transporter_edit', {'id': transporter.id}) }}">edit</a>
+
+    {{ include('transporter/_delete_form.html.twig') }}
+{% endblock %}

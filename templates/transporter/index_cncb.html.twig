@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Transporter index cncb get{% endblock %}
+
+{% block body %}
+    <h1>Transporter index cncb get      <a href="{{ path('api_doc') }}">go to api platform</a>
+</h1>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Date</th>
+            <th>Num_vgm</th>
+            <th>Plomb</th>
+            <th>Num_ifu</th>
+            <th>actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for transporter in transporters %}
+            <tr>
+                <td>{{ transporter.id }}</td>
+                <td>{{ transporter.date ? transporter.date|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ transporter.numVgm }}</td>
+                <td>{{ transporter.plomb }}</td>
+                <td>{{ transporter.numIfu }}</td>
+                <td style="display: none">
+                    <a href="{{ path('transporter_show', {'id': transporter.id}) }}">show</a>
+                    <a href="{{ path('transporter_edit', {'id': transporter.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a style="display: none" href="{{ path('transporter_new') }}">Create new</a>
+{% endblock %}

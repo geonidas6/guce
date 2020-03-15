@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% block metas %} {% endblock %}
+
+    <title>{% block title %} COLLABUS | {% endblock %}</title>
+
+    <link href="{{ asset('vendors/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('vendors/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css') }}"
+          rel="stylesheet">
+
+    <link href="{{ asset('vendors/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('vendors/pnotify/dist/pnotify.css') }}" rel="stylesheet">
+    <link href="{{ asset('vendors/pnotify/dist/pnotify.buttons.css') }}" rel="stylesheet">
+    <link href="{{ asset('vendors/pnotify/dist/pnotify.nonblock.css') }}" rel="stylesheet">
+
+    <link href="{{ asset('vendors/iCheck/skins/flat/green.css') }}" rel="stylesheet">
+    <link href="{{ asset('vendors/datatables.net-bs/css/dataTables.bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css') }}"
+          rel="stylesheet">
+    <link href="{{ asset('vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('vendors/switchery/dist/switchery.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('vendors/nprogress/nprogress.css') }}" rel="stylesheet">
+    <link href="{{ asset('vendors/intl-tel-input/build/css/intlTelInput.css') }}" rel="stylesheet">
+    <link href="{{ asset('vendors/country-select-js-master/build/css/countrySelect.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('vendors/bootstrap-progressbar/css/bootstrap-progressbar-2.0.0.min.css') }}" rel="stylesheet">
+
+
+    <link href="{{ asset('inputtelmodif.css') }}" rel="stylesheet">
+
+    <style>
+
+        {#start css lock#}
+        .overlaylock {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: rgb(0, 0, 0);
+            background-color: rgba(0, 0, 0, 0.9);
+            overflow-x: hidden;
+            transition: 0.5s;
+        }
+
+        .overlaylock-content {
+            position: relative;
+            top: 25%;
+            width: 100%;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .overlaylock div {
+            margin-left: 25%;
+            width: 52%;
+        }
+
+        .overlaylock a:hover, .overlay a:focus {
+            color: #f1f1f1;
+        }
+
+        .overlaylock .closebtn {
+            position: absolute;
+            top: 20px;
+            right: 45px;
+            font-size: 60px;
+        }
+
+        @media screen and (max-height: 450px) {
+            .overlaylock a {
+                font-size: 20px
+            }
+
+            .overlaylock .closebtn {
+                font-size: 40px;
+                top: 15px;
+                right: 35px;
+            }
+
+        {#end css lock#}
+
+
+            .iti-flag {
+                background-image: url("{{ asset('vendors/intl-tel-input/build/img/flags.png') }}");
+            }
+
+            @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+                .iti-flag {
+                    background-image: url("{{ asset('vendors/intl-tel-input/build/img/flags@2x.png') }}");
+                }
+            }
+
+            .country-select {
+
+                position: relative;
+                display: inline-block;
+                width: 100%;
+
+            }
+
+
+    </style>
+
+    {% block stylesheets %}{% endblock %}
+    {% block stylecss %}
+
+    {% endblock %}
+    <!-- Custom Theme Style -->
+    <link href="{{ asset('css/custom.min.css') }}" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
+</head>
+
+<body class="nav-md footer_fixed">
+<div class="container body">
+    <div class="main_container">
+
+
+        <div class="col-md-3 left_col">
+            {% block aside %}
+
+            {% endblock %}
+        </div>
+
+        <!-- top navigation -->
+
+        <div class="top_nav">
+            {% block top %}
+
+            {% endblock %}
+        </div>
+
+        <!-- /top navigation -->
+
+        <!-- page content -->
+
+        <div class="right_col" role="main">
+            {% block main %}
+
+            {% endblock %}
+        </div>
+
+        <!-- /page content -->
+
+        <!-- footer content -->
+        <footer>
+            {% block footer %}
+                <div class="pull-right">
+
+                </div>
+                <div class="clearfix"></div>
+            {% endblock %}
+        </footer>
+        <!-- /footer content -->
+    </div>
+</div>
+
+
+<!---deverouller--->
+
+<!---deskop script--->
+{% block DeskopPush %}
+
+{% endblock %}
+<!---end deskop script--->
+
+<div id="mylock" class="overlaylock">
+    <div class="overlaylock-content">
+        <div class="input-group">
+            <input type="password" class="form-control">
+            <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-user"></span>
+             </span>
+        </div>
+        <a class="btn btn-success fa fa-eye" href="javascript:void(0)" onclick="closeNav()"> Dévérouller</a>
+    </div>
+</div>
+<!---end deverouller-->
+
+<!-- jQuery -->
+<script src="{{ asset('vendors/jquery/dist/jquery.min.js') }}"></script>
+
+
+<!-- Bootstrap -->
+<script src="{{ asset('vendors/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('vendors/moment/min/moment.min.js') }}"></script>
+<script src="{{ asset('vendors/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js') }}"></script>
+<script src="{{ asset('vendors/fastclick/lib/fastclick.js') }}"></script>
+<script src="{{ asset('vendors/bootstrap-progressbar/bootstrap-progressbar.min.js') }}"></script>
+<script src="{{ asset('js/custom.min.js') }}"></script>
+<script src="{{ asset('vendors/pnotify/dist/pnotify.js') }}"></script>
+<script src="{{ asset('vendors/pnotify/dist/pnotify.buttons.js') }}"></script>
+<script src="{{ asset('vendors/pnotify/dist/pnotify.nonblock.js') }}"></script>
+<script src="{{ asset('vendors/notify/notify.js') }}"></script>
+<script src="{{ asset('vendors/jquery-qrcode-master/jquery.qrcode.min.js') }}"></script>
+
+<script src="{{ asset('vendors/iCheck/icheck.min.js') }}"></script>
+<script src="{{ asset('vendors/datatables.net/js/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('vendors/datatables.net-bs/js/dataTables.bootstrap.min.js') }}"></script>
+<script src="{{ asset('vendors/datatables.net-buttons/js/dataTables.buttons.min.js') }}"></script>
+<script src="{{ asset('vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js') }}"></script>
+<script src="{{ asset('vendors/datatables.net-buttons/js/buttons.flash.min.js') }}"></script>
+<script src="{{ asset('vendors/datatables.net-buttons/js/buttons.html5.min.js') }}"></script>
+<script src="{{ asset('vendors/datatables.net-buttons/js/buttons.print.min.js') }}"></script>
+<script src="{{ asset('vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js') }}"></script>
+<script src="{{ asset('vendors/datatables.net-keytable/js/dataTables.keyTable.min.js') }}"></script>
+<script src="{{ asset('vendors/datatables.net-responsive/js/dataTables.responsive.min.js') }}"></script>
+<script src="{{ asset('vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js') }}"></script>
+<script src="{{ asset('vendors/datatables.net-scroller/js/dataTables.scroller.min.js') }}"></script>
+<script src="{{ asset('vendors/switchery/dist/switchery.min.js') }}"></script>
+<script src="{{ asset('vendors/nprogress/nprogress.js') }}"></script>
+<script src="{{ asset('vendors/intl-tel-input/build/js/intlTelInput.js') }}"></script>
+<script src="{{ asset('vendors/country-select-js-master/build/js/countrySelect.min.js') }}"></script>
+
+<script src="{{ asset('vendors/jQuery-Smart-Wizard/js/jquery.smartWizard.js') }}"></script>
+
+
+<!---qrdecod--->
+{##}
+<script src="{{ asset('vendors/instascan-master/instascan.min.js') }}"></script>
+
+
+<script>
+
+
+  var isMobile = {
+    Android: function() {
+      return navigator.userAgent.match(/Android/i);
+    },
+    BlackBerry: function() {
+      return navigator.userAgent.match(/BlackBerry/i);
+    },
+    iOS: function() {
+      return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+    },
+    Opera: function() {
+      return navigator.userAgent.match(/Opera Mini/i);
+    },
+    Windows: function() {
+      return navigator.userAgent.match(/IEMobile/i) || navigator.userAgent.match(/WPDesktop/i);
+    },
+    any: function() {
+      return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
+    }
+  };
+
+
+  {#start lock script#}
+  function openNav() {
+    document.getElementById('mylock').style.width = '100%';
+  }
+
+  function closeNav() {
+    //TODO: ajax pour verifier le password
+    document.getElementById('mylock').style.width = '0%';
+  }
+
+  {#start lock script#}
+
+
+
+  $('body').show();
+  $('.version').text(NProgress.version);
+  NProgress.configure({showSpinner: false});
+  NProgress.start();
+  setTimeout(function() {
+    NProgress.done();
+    $('.fade').removeClass('out');
+  }, 1000);
+
+
+  // full screen function
+  function openFullscreen() {
+    if (!document.fullscreenElement) {
+      if (document.documentElement.mozRequestFullScreen) { /* Firefox */
+        document.documentElement.mozRequestFullScreen();
+      } else if (document.documentElement.webkitRequestFullscreen) { /* Chrome, Safari & Opera */
+        document.documentElement.webkitRequestFullscreen();
+      } else if (document.documentElement.msRequestFullscreen) { /* IE/Edge */
+        document.documentElement.msRequestFullscreen();
+      }
+    } else {
+      document.exitFullscreen();
+    }
+
+    document.addEventListener('fullscreenerror', function(event) {
+      console.log(event);
+
+    });
+
+  }
+
+
+
+  $(document).ready(function() {
+
+    $('.ui-pnotify').remove();
+      {% for notice in app.session.flashBag.get('notice') %}
+    new PNotify({
+      title: '{{ notice.title }}',
+      type: '{{ notice.type }}',
+      text: '{{ notice.message }}',
+      nonblock: {
+        nonblock: true
+      },
+      styling: 'bootstrap3'
+    });
+      {% endfor %}
+
+
+
+    $('#datatable-checkbox').dataTable(
+        {
+          destroy: true,
+          'language': {
+            'sProcessing': 'Traitement en cours ...',
+            'sLengthMenu': 'Afficher _MENU_ lignes',
+            'sZeroRecords': 'Aucun résultat trouvé',
+            'sEmptyTable': 'Aucune donnée disponible',
+            'sInfo': 'Lignes _START_ à _END_ sur _TOTAL_',
+            'sInfoEmpty': 'Aucune ligne affichée',
+            'sInfoFiltered': '(Filtrer un maximum de_MAX_)',
+            'sInfoPostFix': '',
+            'sSearch': 'Chercher:',
+            'sUrl': '',
+            'sInfoThousands': ',',
+            'sLoadingRecords': 'Chargement...',
+            'oPaginate': {
+              'sFirst': 'Premier', 'sLast': 'Dernier', 'sNext': 'Suivant', 'sPrevious': 'Précédent'
+            },
+            'oAria': {
+              'sSortAscending': ': Trier par ordre croissant', 'sSortDescending': ': Trier par ordre décroissant'
+            }
+          }
+        }
+    );
+
+
+    $('#datatable-responsive').dataTable(
+        {
+          destroy: true,
+          'language': {
+            'sProcessing': 'Traitement en cours ...',
+            'sLengthMenu': 'Afficher _MENU_ lignes',
+            'sZeroRecords': 'Aucun résultat trouvé',
+            'sEmptyTable': 'Aucune donnée disponible',
+            'sInfo': 'Lignes _START_ à _END_ sur _TOTAL_',
+            'sInfoEmpty': 'Aucune ligne affichée',
+            'sInfoFiltered': '(Filtrer un maximum de_MAX_)',
+            'sInfoPostFix': '',
+            'sSearch': 'Chercher:',
+            'sUrl': '',
+            'sInfoThousands': ',',
+            'sLoadingRecords': 'Chargement...',
+            'oPaginate': {
+              'sFirst': 'Premier', 'sLast': 'Dernier', 'sNext': 'Suivant', 'sPrevious': 'Précédent'
+            },
+            'oAria': {
+              'sSortAscending': ': Trier par ordre croissant', 'sSortDescending': ': Trier par ordre décroissant'
+            }
+          }
+        }
+    );
+
+  });
+</script>
+{% block javascripts %} {% endblock %}
+</body>
+</html>
+

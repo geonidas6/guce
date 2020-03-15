@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}TestCncb{% endblock %}
+
+{% block body %}
+    <h1>TestCncb</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ test_cncb.id }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ test_cncb.date ? test_cncb.date|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Transporteur</th>
+                <td>{{ test_cncb.transporteur }}</td>
+            </tr>
+            <tr>
+                <th>Agent</th>
+                <td>{{ test_cncb.agent }}</td>
+            </tr>
+            <tr>
+                <th>Date_val</th>
+                <td>{{ test_cncb.dateVal ? test_cncb.dateVal|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('test_cncb_index') }}">back to list</a>
+
+    <a href="{{ path('test_cncb_edit', {'id': test_cncb.id}) }}">edit</a>
+
+    {{ include('test_cncb/_delete_form.html.twig') }}
+{% endblock %}

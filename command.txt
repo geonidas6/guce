@@ -1,0 +1,10 @@
+ php bin/console list make
+ php bin/console make:controller --help
+ php bin/console make:entity --api-resource
+php bin/console doctrine:schema:update --force
+php bin/console about
+ php bin/console make:migration
+  php bin/console doctrine:migrations:migrate
+  php -S 127.0.0.1:8000 -t public
+  https://symfony.com/doc/current/components/http_client.html
+
