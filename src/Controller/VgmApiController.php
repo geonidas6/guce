@@ -2,8 +2,8 @@
 
 namespace App\Controller;
 
-use App\Entity\CheeseListing;
 use App\Entity\Vgmcertificat;
+use App\Repository\VgmcertificatRepository;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -23,8 +23,8 @@ class VgmApiController extends AbstractController
     /**
      * @Route(
      *     name="vgm_listing",
-     *     path="api/retirerCertificat",
-     *     methods={"POST"},
+     *     path="api/retirerCertificat/{ticketNumber}",
+     *     methods={"POST","GET"},
      *     defaults={
      *       "_controller"="\App\Controller\VgmApiController::retirerCertificat",
      *       "_api_resource_class"="App\Entity\Vgmcertificat",
@@ -32,12 +32,14 @@ class VgmApiController extends AbstractController
      *     }
      *   )
      */
-    public function retirerCertificat(Vgmcertificat $data, ObjectManager $manager): Vgmcertificat
+    public function retirerCertificat(Vgmcertificat $data): Vgmcertificat
     {
+
+        $entityManager = $this->getDoctrine()->getManager();
         if ($data->getCargoType() === false) {
             $data->getRequestTime();
-            $manager->persist($data);
-            $manager->flush();
+            $entityManager->persist($data);
+            $entityManager->flush();
 
             // Image that we can publish a cheese advert to a social medium platform:
             // $cheeseListingService->publishToFacebook($cheeseListing);

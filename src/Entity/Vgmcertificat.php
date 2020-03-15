@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * * @ApiResource(
- *     routePrefix="/vgm",
+ *     routePrefix="/certificat",
  *     collectionOperations={
  *         "get"={
  *               "path"="/vgm"
@@ -31,7 +31,7 @@ use Doctrine\ORM\Mapping as ORM;
  *              "swagger_context" = {
  *                  "parameters" = {
  *                      {
- *                          "name" = "id",
+ *                          "name" = "ticketNumber",
  *                          "in" = "path",
  *                          "required" = "true",
  *                          "type" = "string"
