@@ -26,7 +26,7 @@ use Doctrine\ORM\Mapping as ORM;
  *          "delete"={
  *              "path"="/vgm/{id}"
  *          },
- *          "publishCheese"={
+ *          "vgmretrait"={
  *              "route_name"="vgm_listing",
  *              "swagger_context" = {
  *                  "parameters" = {

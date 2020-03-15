@@ -24,11 +24,11 @@ class VgmApiController extends AbstractController
      * @Route(
      *     name="vgm_listing",
      *     path="api/retirerCertificat",
-     *     methods={"PUT"},
+     *     methods={"POST"},
      *     defaults={
      *       "_controller"="\App\Controller\VgmApiController::retirerCertificat",
      *       "_api_resource_class"="App\Entity\Vgmcertificat",
-     *       "_api_item_operation_name"="publishCheese"
+     *       "_api_item_operation_name"="vgmretrait"
      *     }
      *   )
      */
