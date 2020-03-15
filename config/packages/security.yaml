@@ -50,6 +50,8 @@ security:
     access_control:
         - { path: '^/login', roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: '^/inscription', roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: '^/vgmcertificat/new', roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: '^/vgmcertificat/', roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: '^/transports', roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: '^/user', roles: IS_AUTHENTICATED_ANONYMOUSLY }
         #- { path: '^/register', roles: IS_AUTHENTICATED_ANONYMOUSLY }
