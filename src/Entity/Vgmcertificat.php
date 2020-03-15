@@ -6,7 +6,41 @@ use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ApiResource()
+ * * @ApiResource(
+ *     routePrefix="/vgm",
+ *     collectionOperations={
+ *         "get"={
+ *               "path"="/vgm"
+ *          },
+ *          "post"={
+ *              "path"="/vgm",
+ *          }
+ *     },
+ *     itemOperations={
+ *         "get"={
+ *              "path"="/vgm/{id}"
+ *          },
+ *          "put"={
+ *              "path"="/vgm/{id}",
+ *          },
+ *          "delete"={
+ *              "path"="/vgm/{id}"
+ *          },
+ *          "publishCheese"={
+ *              "route_name"="vgm_listing",
+ *              "swagger_context" = {
+ *                  "parameters" = {
+ *                      {
+ *                          "name" = "id",
+ *                          "in" = "path",
+ *                          "required" = "true",
+ *                          "type" = "string"
+ *                      }
+ *                  }
+ *              }
+ *          }
+ *     }
+ * )
  * @ORM\Entity(repositoryClass="App\Repository\VgmcertificatRepository")
  */
 class Vgmcertificat
