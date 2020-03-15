@@ -1,3 +1,3 @@
 <?php
-    header ("Location: http://guce.collabus.online/public/");
+    header ("Location: http://localhost/guce/public/");
 ?>
