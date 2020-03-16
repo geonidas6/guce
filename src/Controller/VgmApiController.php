@@ -29,7 +29,8 @@ class VgmApiController extends AbstractController
         $ticketNumber = $request->getContent();
 
        $vgm =  $this->vgmcertificatRepository->findOneBy([
-            "ticketNumber"=>$ticketNumber
+            "ticketNumber"=>$ticketNumber,
+           "isdelete"=>false
         ]);
 
        if (!empty($vgm)) {

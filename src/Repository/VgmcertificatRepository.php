@@ -37,14 +37,6 @@ class VgmcertificatRepository extends ServiceEntityRepository
     */
 
 
-    public function findOneByDelete($value): ?Vgmcertificat
-    {
-        return $this->createQueryBuilder('v')
-            ->andWhere('v.isdelete != :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
+
 
 }

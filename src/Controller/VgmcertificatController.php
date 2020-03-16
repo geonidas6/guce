@@ -21,7 +21,9 @@ class VgmcertificatController extends AbstractController
     public function index(VgmcertificatRepository $vgmcertificatRepository): Response
     {
         return $this->render('vgmcertificat/index.html.twig', [
-            'vgmcertificats' => $vgmcertificatRepository->findOneByDelete(true),
+            'vgmcertificats' => $vgmcertificatRepository->findBy([
+                "isdelete"=>false
+            ]),
         ]);
     }
 

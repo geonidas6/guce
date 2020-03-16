@@ -8,7 +8,14 @@ use App\Controller\VgmApiController;
 
 /**
  * @ApiResource(
+ *     itemOperations={
+ *     "get",
+ *     "delete",
+ *     "put"
+ *     },
  *      collectionOperations={
+ *          "post",
+ *           "get",
  *          "change_password"={
  *              "method"="POST",
  *              "path"="/vgm/retrait/certificat",
@@ -175,7 +182,7 @@ class Vgmcertificat
     /**
      * @ORM\Column(type="boolean", nullable=true)
      */
-    private $isdelete;
+    private $isdelete  = false;
 
     public function getId(): ?int
     {
