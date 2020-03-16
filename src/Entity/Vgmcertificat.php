@@ -11,7 +11,7 @@ use App\Controller\VgmApiController;
  *      collectionOperations={
  *          "change_password"={
  *              "method"="POST",
- *              "path"="/users/active/changepassword",
+ *              "path"="/vgm/retrait/certificat",
  *              "controller"=VgmApiController::class,
  *              "normalization_context"={"groups"={"afup"}},
  *              "defaults"={"_api_receive"=false},
