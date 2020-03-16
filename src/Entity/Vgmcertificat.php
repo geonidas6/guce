@@ -4,47 +4,40 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
+use App\Controller\VgmApiController;
 
 /**
- * * @ApiResource(
- *     routePrefix="/certificat",
- *     collectionOperations={
- *         "get"={
- *               "path"="/vgm"
- *          },
- *          "post"={
- *              "path"="/vgm",
- *          }
- *     },
- *     itemOperations={
- *         "get"={
- *              "path"="/vgm/{id}"
- *          },
- *          "put"={
- *              "path"="/vgm/{id}",
- *          },
- *          "delete"={
- *              "path"="/vgm/{id}"
- *          },
- *          "vgmretrait"={
- *              "route_name"="vgm_listing",
- *              "swagger_context" = {
- *                  "parameters" = {
+ * @ApiResource(
+ *      collectionOperations={
+ *          "change_password"={
+ *              "method"="POST",
+ *              "path"="/users/active/changepassword",
+ *              "controller"=VgmApiController::class,
+ *              "normalization_context"={"groups"={"afup"}},
+ *              "defaults"={"_api_receive"=false},
+ *              "swagger_context"={
+ *                  "summary" = "Change user password",
+ *                  "parameters"={
  *                      {
  *                          "name" = "ticketNumber",
- *                          "in" = "path",
+ *                          "in" = "body",
+ *                          "schema" = {
+ *                              "type" = "string"
+ *                           },
  *                          "required" = "true",
- *                          "type" = "string"
  *                      }
- *                  }
+ *                  },
  *              }
  *          }
- *     }
+ *      }
  * )
  * @ORM\Entity(repositoryClass="App\Repository\VgmcertificatRepository")
  */
 class Vgmcertificat
 {
+
+
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -63,7 +56,7 @@ class Vgmcertificat
     private $validationTime;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255,unique=true)
      */
     private $ticketNumber;
 
@@ -178,6 +171,11 @@ class Vgmcertificat
      * @ORM\Column(type="date", nullable=true)
      */
     private $weightingDate2;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $isdelete;
 
     public function getId(): ?int
     {
@@ -482,6 +480,18 @@ class Vgmcertificat
     public function setWeightingDate2(?\DateTimeInterface $weightingDate2): self
     {
         $this->weightingDate2 = $weightingDate2;
+
+        return $this;
+    }
+
+    public function getIsdelete(): ?bool
+    {
+        return $this->isdelete;
+    }
+
+    public function setIsdelete(?bool $isdelete): self
+    {
+        $this->isdelete = $isdelete;
 
         return $this;
     }

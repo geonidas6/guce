@@ -2,48 +2,56 @@
 
 namespace App\Controller;
 
+
+
 use App\Entity\Vgmcertificat;
 use App\Repository\VgmcertificatRepository;
-use Doctrine\Common\Persistence\ObjectManager;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Routing\Annotation\Route;
+
 
 class VgmApiController extends AbstractController
 {
-    /**
-     * @Route("/vgm/api", name="vgm_api")
-     */
-    public function index()
+
+    private $vgmcertificatRepository;
+
+    public function __construct(VgmcertificatRepository $vgmcertificatRepository)
     {
-        return $this->render('vgm_api/index.html.twig', [
-            'controller_name' => 'VgmApiController',
+        $this->vgmcertificatRepository = $vgmcertificatRepository;
+    }
+
+    public function __invoke(Request $request)
+    {
+
+
+        $entityManager = $this->getDoctrine()->getManager();
+
+        $ticketNumber = $request->getContent();
+
+       $vgm =  $this->vgmcertificatRepository->findOneBy([
+            "ticketNumber"=>$ticketNumber
+        ]);
+
+       if (!empty($vgm)) {
+           $vgm->setIsdelete(true);
+           $entityManager->flush();
+           return $this->json([
+               'responseDate'=>new \DateTime(),
+               'ticketNum'=>$ticketNumber,
+               'resultCode'=>0
+           ],200);
+
+       }else
+           return $this->json([
+               'responseDate'=>new \DateTime(),
+               'ticketNum'=>$ticketNumber,
+               'cancelCode'=>4,
+               'cancelReason'=>'ticketNum Not found'
+           ],200);
+        return $this->json([
+            "GET IN"
         ]);
     }
 
-    /**
-     * @Route(
-     *     name="vgm_listing",
-     *     path="api/retirerCertificat/{ticketNumber}",
-     *     methods={"POST","GET"},
-     *     defaults={
-     *       "_controller"="\App\Controller\VgmApiController::retirerCertificat",
-     *       "_api_resource_class"="App\Entity\Vgmcertificat",
-     *       "_api_item_operation_name"="vgmretrait"
-     *     }
-     *   )
-     */
-    public function retirerCertificat(Vgmcertificat $data): Vgmcertificat
-    {
 
-        $entityManager = $this->getDoctrine()->getManager();
-        if ($data->getCargoType() === false) {
-            $data->getRequestTime();
-            $entityManager->persist($data);
-            $entityManager->flush();
-
-            // Image that we can publish a cheese advert to a social medium platform:
-            // $cheeseListingService->publishToFacebook($cheeseListing);
-        }
-        return $data;
-    }
 }
