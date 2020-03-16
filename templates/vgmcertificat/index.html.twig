@@ -34,7 +34,7 @@
                 <th>TvfDate</th>
                 <th>WeightingDate1</th>
                 <th>WeightingDate2</th>
-                <th>actions</th>
+
             </tr>
         </thead>
         <tbody>
@@ -66,10 +66,7 @@
                 <td>{{ vgmcertificat.tvfDate ? vgmcertificat.tvfDate|date('Y-m-d') : '' }}</td>
                 <td>{{ vgmcertificat.weightingDate1 ? vgmcertificat.weightingDate1|date('Y-m-d') : '' }}</td>
                 <td>{{ vgmcertificat.weightingDate2 ? vgmcertificat.weightingDate2|date('Y-m-d') : '' }}</td>
-                <td>
-                    <a href="{{ path('vgmcertificat_show', {'id': vgmcertificat.id}) }}">show</a>
-                    <a href="{{ path('vgmcertificat_edit', {'id': vgmcertificat.id}) }}">edit</a>
-                </td>
+
             </tr>
         {% else %}
             <tr>
@@ -79,5 +76,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('vgmcertificat_new') }}">Create new</a>
+
 {% endblock %}
